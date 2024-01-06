@@ -119,7 +119,7 @@ function getPasswordOptions() {
   }
 
   if (confirm("Do you want special characters in your password?")) {
-    // Prompt user for special chatcters options
+    // Prompt user for special characters options
     passwordArray = passwordArray.concat(specialCharacters);
   }
 
