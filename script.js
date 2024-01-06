@@ -88,11 +88,10 @@ var upperCasedCharacters = [
   "Z",
 ];
 
+var passwordArray = []; // Empty array of password options stored in variable
+var passwordLength = 0; // Password length stored in variable
+
 // Function to prompt user for password options
-
-// var passwordArray = [];
-// Empty array of password options stored in variable
-
 function getPasswordOptions() {
   passwordLength = prompt("Enter password length: 10 to 64 characters"); // Prompt user for password length
 
@@ -102,7 +101,7 @@ function getPasswordOptions() {
     return false;
   }
 
-  var passwordArray = []; // Empty array of password options stored in variable
+  passwordArray = []; // Empty array of password options stored in variable
 
   if (confirm("Do you want special characters in your password?")) {
     // Prompt user for special chatcters options
@@ -130,8 +129,6 @@ function getPasswordOptions() {
 
   return true;
 }
-
-// getPasswordOptions();
 
 // Function to generate password with user input
 function generatePassword() {
