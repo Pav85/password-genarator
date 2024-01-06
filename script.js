@@ -93,38 +93,55 @@ var passwordLength = 0; // Password length stored in variable
 
 // Function to prompt user for password options
 function getPasswordOptions() {
-  passwordLength = prompt("Enter password length: 10 to 64 characters"); // Prompt user for password length
+  var isValidLength = false;
 
-  if (passwordLength < 10 || passwordLength > 64) {
-    alert("Password must be between 10 and 64 characters. Please try again."); // Display error message
+  while (!isValidLength) {
+    passwordLength = prompt("Enter password length: 10 to 64 characters"); // Prompt user for password length
 
-    return false;
+    if (passwordLength >= 10 && passwordLength <= 64) {
+      isValidLength = true;
+    } else {
+      alert("Password must be between 10 and 64 characters. Please try again."); // Display error message
+    }
   }
 
-  passwordArray = []; // Empty array of password options stored in variable
+  var hasCharacterType = false;
 
-  if (confirm("Do you want special characters in your password?")) {
-    // Prompt user for special chatcters options
-    passwordArray = passwordArray.concat(specialCharacters);
-  }
+  while (!hasCharacterType) {
+    passwordArray = [];
 
-  if (confirm("Do you want numeric characters in your password?")) {
-    //  Prompt user for numeric characters options
-    passwordArray = passwordArray.concat(numericCharacters);
-  }
+    if (confirm("Do you want special characters in your password?")) {
+      // Prompt user for special chatcters options
+      passwordArray = passwordArray.concat(specialCharacters);
+      hasCharacterType = true;
+    }
 
-  if (confirm("Do you want lowercase characters in your password?")) {
-    // Prompt user for lowercase options
-    passwordArray = passwordArray.concat(lowerCasedCharacters);
-  }
+    if (confirm("Do you want numeric characters in your password?")) {
+      //  Prompt user for numeric characters options
+      passwordArray = passwordArray.concat(numericCharacters);
+      hasCharacterType = true;
+    }
 
-  if (confirm("Do you want uppercase characters in your password?")) {
-    // Prompt user for uppercase options
-    passwordArray = passwordArray.concat(upperCasedCharacters);
+    if (confirm("Do you want lowercase characters in your password?")) {
+      // Prompt user for lowercase options
+      passwordArray = passwordArray.concat(lowerCasedCharacters);
+      hasCharacterType = true;
+    }
+
+    if (confirm("Do you want uppercase characters in your password?")) {
+      // Prompt user for uppercase options
+      passwordArray = passwordArray.concat(upperCasedCharacters);
+      hasCharacterType = true;
+    }
+
+    if (!hasCharacterType) {
+      alert("You must choose at least one character type. Please try again.");
+    }
   }
 
   if (passwordArray.length == 0) {
     alert("You must choose at least one character type. Please try again."); // Display error message
+    return false;
   }
 
   return true;
