@@ -1,161 +1,163 @@
 // Array of special characters to be included in password
 var specialCharacters = [
-  '@',
-  '%',
-  '+',
-  '\\',
-  '/',
+  "@",
+  "%",
+  "+",
+  "\\",
+  "/",
   "'",
-  '!',
-  '#',
-  '$',
-  '^',
-  '?',
-  ':',
-  ',',
-  ')',
-  '(',
-  '}',
-  '{',
-  ']',
-  '[',
-  '~',
-  '-',
-  '_',
-  '.'
+  "!",
+  "#",
+  "$",
+  "^",
+  "?",
+  ":",
+  ",",
+  ")",
+  "(",
+  "}",
+  "{",
+  "]",
+  "[",
+  "~",
+  "-",
+  "_",
+  ".",
 ];
 
 // Array of numeric characters to be included in password
-var numericCharacters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+var numericCharacters = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
 // Array of lowercase characters to be included in password
 var lowerCasedCharacters = [
-  'a',
-  'b',
-  'c',
-  'd',
-  'e',
-  'f',
-  'g',
-  'h',
-  'i',
-  'j',
-  'k',
-  'l',
-  'm',
-  'n',
-  'o',
-  'p',
-  'q',
-  'r',
-  's',
-  't',
-  'u',
-  'v',
-  'w',
-  'x',
-  'y',
-  'z'
+  "a",
+  "b",
+  "c",
+  "d",
+  "e",
+  "f",
+  "g",
+  "h",
+  "i",
+  "j",
+  "k",
+  "l",
+  "m",
+  "n",
+  "o",
+  "p",
+  "q",
+  "r",
+  "s",
+  "t",
+  "u",
+  "v",
+  "w",
+  "x",
+  "y",
+  "z",
 ];
 
 // Array of uppercase characters to be included in password
 var upperCasedCharacters = [
-  'A',
-  'B',
-  'C',
-  'D',
-  'E',
-  'F',
-  'G',
-  'H',
-  'I',
-  'J',
-  'K',
-  'L',
-  'M',
-  'N',
-  'O',
-  'P',
-  'Q',
-  'R',
-  'S',
-  'T',
-  'U',
-  'V',
-  'W',
-  'X',
-  'Y',
-  'Z'
+  "A",
+  "B",
+  "C",
+  "D",
+  "E",
+  "F",
+  "G",
+  "H",
+  "I",
+  "J",
+  "K",
+  "L",
+  "M",
+  "N",
+  "O",
+  "P",
+  "Q",
+  "R",
+  "S",
+  "T",
+  "U",
+  "V",
+  "W",
+  "X",
+  "Y",
+  "Z",
 ];
 
 // Function to prompt user for password options
 
-var passwordArray = [];  // Empty array of password options stored in variable
-
+// var passwordArray = [];
+// Empty array of password options stored in variable
 
 function getPasswordOptions() {
-  
+  passwordLength = prompt("Enter password length: 10 to 64 characters"); // Prompt user for password length
 
-   passwordLength = prompt("Enter password length: 10 to 64 characters");  // Prompt user for password length
+  if (passwordLength < 10 || passwordLength > 64) {
+    alert("Password must be between 10 and 64 characters. Please try again."); // Display error message
 
-   if (passwordLength < 10 || passwordLength > 64) {
-     alert("Password must be between 10 and 64 characters. Please try again."); // Display error message
-   
-     return false;
-    };
+    return false;
+  }
 
-    if (confirm("Do you want special characters in your password?")) {   // Prompt user for special chatcters options
-      passwordArray = passwordArray.concat(specialCharacters);
-    };
+  var passwordArray = []; // Empty array of password options stored in variable
 
-    if (confirm("Do you want numeric characters in your password?")) {  //  Prompt user for numeric characters options
-      passwordArray = passwordArray.concat(numericCharacters);
-    };
+  if (confirm("Do you want special characters in your password?")) {
+    // Prompt user for special chatcters options
+    passwordArray = passwordArray.concat(specialCharacters);
+  }
 
-    if (confirm("Do you want lowercase characters in your password?")) {  // Prompt user for lowercase options
-      passwordArray = passwordArray.concat(lowerCasedCharacters);
-    };
+  if (confirm("Do you want numeric characters in your password?")) {
+    //  Prompt user for numeric characters options
+    passwordArray = passwordArray.concat(numericCharacters);
+  }
 
-    if (confirm("Do you want uppercase characters in your password?")) {  // Prompt user for uppercase options
-      passwordArray = passwordArray.concat(upperCasedCharacters);
-    };
+  if (confirm("Do you want lowercase characters in your password?")) {
+    // Prompt user for lowercase options
+    passwordArray = passwordArray.concat(lowerCasedCharacters);
+  }
 
-    if (passwordArray.length == 0) {
-      alert("You must choose at least one character type. Please try again.");  // Display error message
-    }; 
-  
+  if (confirm("Do you want uppercase characters in your password?")) {
+    // Prompt user for uppercase options
+    passwordArray = passwordArray.concat(upperCasedCharacters);
+  }
 
-    return true;  
+  if (passwordArray.length == 0) {
+    alert("You must choose at least one character type. Please try again."); // Display error message
+  }
 
-
+  return true;
 }
 
-getPasswordOptions();
+// getPasswordOptions();
 
+// Function to generate password with user input
+function generatePassword() {
+  // Function to generate password with user input
+  var randomPassword = "";
 
-// Function to generate password with user input  
-function generatePassword() {                   // Function to generate password with user input
-    var randomPassword = "";
-    
-    for (var i = 0; i <= passwordLength; i++) {
-       var generatedPassword = Math.floor(Math.random() * passwordArray.length);
-       randomPassword = randomPassword + passwordArray[generatedPassword];
-    } 
+  for (var i = 0; i <= passwordLength; i++) {
+    var generatedPassword = Math.floor(Math.random() * passwordArray.length);
+    randomPassword += passwordArray[generatedPassword];
+  }
 
-    return randomPassword; 
+  return randomPassword;
 }
-
 
 // Get references to the #generate element
-var generateBtn = document.querySelector('#generate');
+var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector('#password');
+  if (getPasswordOptions()) {
+    var password = generatePassword();
+    var passwordText = document.querySelector("#password");
 
-  passwordText.value = password;
+    passwordText.value = password;
+  }
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener('click', writePassword);
+generateBtn.addEventListener("click", writePassword);
